@@ -3,7 +3,7 @@
 
  run the ollama3.2 server script first before using
 
- repositories needed are
+ repositories needed are:
     langchain
     langchain-ollama
     langchain-chroma
