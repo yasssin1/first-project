@@ -1,11 +1,16 @@
-# first project
- a python script that uses langchain to chain a database to an ollama3.2 model
+# First Project
 
- run the ollama3.2 server script first before using
+A Python script that uses Langchain to chain a database to an Ollama3.2 model.
 
- repositories needed are:
-    langchain
-    langchain-ollama
-    langchain-chroma
-    pandas
-`pip install langchain langchain-ollama langchain-chroma pandas`
+Run the Ollama3.2 server script first before using.
+
+## Repositories Needed:
+- langchain
+- langchain-ollama
+- langchain-chroma
+- pandas
+
+Install the required libraries using pip:
+
+```bash
+pip install langchain langchain-ollama langchain-chroma pandas
