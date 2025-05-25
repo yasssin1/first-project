@@ -31,7 +31,7 @@ while True:
     #retrieving data from the database
     facts = retriever.invoke(question)
     #printing the data for testing purposes
-    print(facts)
+    #print(facts)
     #outputting results
     result = chain.invoke({"facts":facts, "question": question})
     print("\n", result)

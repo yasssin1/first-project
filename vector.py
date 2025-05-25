@@ -15,31 +15,42 @@ dataframe = pandas.read_csv("facts.csv")
 #embedding model setup, model can be changed
 embeding = OllamaEmbeddings(model="mxbai-embed-large")
 
-#database location
+#database info
 db_location = "./chrome_langchain_db"
-
+collection_name = "Facts_database"
 documents = []
 ids = []
 
-#converting the csv into a document
-for i, row in dataframe.iterrows():
-    document = Document(
-        page_content=row["Fact"] + " " + "is" + " " + row["fact check"],
-        metadata={"reliability": row["Reliability"], "date": row["Date"]},
-        id=str(i)
+# Check if db already exists
+if os.path.exists(db_location) and os.listdir(db_location):
+    # Load existing vector store
+    facts_vector = Chroma(
+        collection_name=collection_name,
+        persist_directory=db_location,
+        embedding_function=embeding
     )
-    ids.append(str(i))
-    documents.append(document)
+else:
+    #using pandas to read the database
+    dataframe = pandas.read_csv("facts.csv")
 
-#initiating a vector store
-facts_vector = Chroma(
-    collection_name="Facts_database",
-    persist_directory=db_location,
-    embedding_function=embeding
-)
+    #converting the csv into a document
+    for i, row in dataframe.iterrows():
+        document = Document(
+            page_content=row["Fact"] + " is " + row["fact check"],
+            metadata={"reliability": row["Reliability"], "date": row["Date"]},
+            id=str(i)
+        )
+        ids.append(str(i))
+        documents.append(document)
 
-facts_vector.add_documents(documents=documents, ids=ids)
-
+    #initiating a vector store
+    facts_vector = Chroma(
+        collection_name=collection_name,
+        persist_directory=db_location,
+        embedding_function=embeding
+    )
+    facts_vector.add_documents(documents=documents, ids=ids)
+    facts_vector.persist() 
 #facts_vector.persist() can be used to keep vector store between sessions
 
 #setup of vector for usage with the ai model by turning the vector store into a retriever that sends data to the ai
