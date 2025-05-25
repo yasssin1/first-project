@@ -10,7 +10,20 @@ Run the Ollama3.2 server script first before using.
 - langchain-chroma
 - pandas
 
+Create a virtual environment:
+
+```bash
+./venv/Scripts/activate
+```
+
+Enter the virtual environment:
+
+```bash
+./venv/Scripts/activate
+```
+
 Install the required libraries using pip:
 
 ```bash
 pip install langchain langchain-ollama langchain-chroma pandas
+```
