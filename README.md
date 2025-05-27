@@ -13,7 +13,7 @@ Run the Ollama3.2 server script first before using.
 Create a virtual environment:
 
 ```bash
-py -3.11 -m venv venv
+py -m venv venv
 ```
 
 Enter the virtual environment:
