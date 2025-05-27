@@ -1,15 +1,20 @@
+#the kkmimport
 from langchain_ollama.llms import OllamaLLM
+#for prompt generating
 from langchain_core.prompts import ChatPromptTemplate
+#info retriever we made in vector.py
 from pipelines.imports.vector import retriever
 from typing import List, Union, Generator, Iterator
 
+#class definition
 class Pipeline:
+    #initialisation, values to be filled later
     def __init__(self):
         self.basic_rag_pipeline = None
         self.chain = None
 
     async def on_startup(self):
-
+        #on start script for setting up constants and values
 
         model = OllamaLLM(model="llama3.2")
 
@@ -35,11 +40,15 @@ class Pipeline:
         # This function is called when the server is stopped.
         pass
 
+    #defining the pipe here
+    #model_id, messages and body go unused, maybe remove later
     def pipe(
         self, user_message: str, model_id: str, messages: List[dict], body: dict
-    ) -> Union[str, Generator, Iterator]:
+    ) -> Union[str, Generator, Iterator]: #return type, maybe should be string only?
         # This is where you can add your custom RAG pipeline.
         # Typically, you would retrieve relevant information from your knowledge base and synthesize it to generate a response.
+
+        #debugging
         print(messages)
         print(user_message)
 
