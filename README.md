@@ -25,5 +25,5 @@ Enter the virtual environment:
 Install the required libraries using pip:
 
 ```bash
-pip install langchain langchain-ollama langchain-chroma pandas
+pip install langchain langchain-ollama langchain-chroma pandas faiss-cpu numpy
 ```

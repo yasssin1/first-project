@@ -29,7 +29,7 @@ while True:
     if question == "q":
         break
     #retrieving data from the database
-    facts = retriever.invoke(question)
+    facts = retriever(question, k=1)
     #printing the data for testing purposes
     #print(facts)
     #outputting results
